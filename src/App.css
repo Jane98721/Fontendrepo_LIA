@@ -1,0 +1,53 @@
+body {
+  background-color: lightblue;
+}
+
+.title{
+  text-align: center;
+}
+
+.btn{
+  border-radius: 10%;
+}
+
+.forms {
+  width: 500px;
+  height: 500px;
+  border-radius: 2%;
+  background-color: white;
+  margin-left: 34%;
+  margin-top: 10px;
+
+}
+
+.form-input {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.Formstyle {
+  width: 500px;
+  height: 500px;
+  border-radius: 2%;
+  background-color: white;
+  margin-left: 34%;
+  margin-top: 10px;
+}
+
+.style-nav {
+  border: 2px solid black;
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.UserNamelabel{
+  font-weight: bold;
+}
+
+.Passwordlabel {
+  font-weight: bold;
+}
+
+.Emaillabel {
+  font-weight: bold;
+}
