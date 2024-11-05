@@ -5,6 +5,8 @@ const Signup = () => {
     const [username, setUserName] = useState ("")
     const [email, setEmail] = useState ("")
     const [password, setPassword] = useState ("")
+    const [error, setError] = useState ("")
+    const [success, setSuccess] = useState ("")
 
     const handleUserName = (e) => {
         setUserName(e.target.value)
@@ -21,7 +23,21 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Submitted", { username, email, password });
+
+    if (!username || !email || !password) {
+        setError("All fields are required")
+        return
+    }
+
+    setError ("")
+    setSuccess("Registration successful")
+
+
+    console.log("Form Submitted", { username, email, password });
+
+    setUserName("")
+    setEmail("")
+    setPassword("")
     };
 
 return (

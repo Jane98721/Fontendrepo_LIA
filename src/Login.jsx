@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const Login = () => {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState(false)
 
     const handleUserName = (e) => {
         setUserName(e.target.value)
@@ -21,8 +22,36 @@ const Login = () => {
           password: password
         }
 
-    console.log("Form Submitted", data);
-    };
+    try {
+      const response = await fetch('http://localhost:4000', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if(response.ok) {
+      const result = await response.json();
+
+      console.log('Access token', result.accessToken)
+      console.log('Refresh token', result.refreshToken)
+
+      localStorage.setItem('accessToken', result.accessToken);
+      localStorage.setItem('refreshToken', result.refreshToken)
+      setError(null)
+
+    } else {
+      const errorData = await response.json();
+      setError(errorData.message || 'Invalid credentials')
+    } 
+    
+  } catch (error) {
+      console.error('Error', error)
+      setError ('Login failed')
+    }
+
+  } 
 
     return (
 
@@ -39,7 +68,7 @@ const Login = () => {
               onChange={handleUserName}
               className="input"
               value={userName}
-              type="userName"
+              type="text"
               placeholder="Enter your username"
               />
 
