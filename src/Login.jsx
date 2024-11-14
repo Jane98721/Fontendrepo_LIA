@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Login = () => {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState(false)
+    const [error, setError] = useState("")
 
     const handleUserName = (e) => {
         setUserName(e.target.value)
@@ -27,20 +27,15 @@ const Login = () => {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
+         
         },
         body: JSON.stringify(data),
       })
 
       if(response.ok) {
       const result = await response.json();
-
-      console.log('Access token', result.accessToken)
-      console.log('Refresh token', result.refreshToken)
-
-      localStorage.setItem('accessToken', result.accessToken);
-      localStorage.setItem('refreshToken', result.refreshToken)
-      setError(null)
-
+      console.log('Login successfull')
+      setError('')
     } else {
       const errorData = await response.json();
       setError(errorData.message || 'Invalid credentials')
